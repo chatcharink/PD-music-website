@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal fade" id="addAdditionalContent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAdditionalContentLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <%= form_for @content_data , url: content_path(format: :json, menu: menu, cover_id: cover), method: :POST, html: { id: "form_create_additional_content", class: "w-100" } do |f| %>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAdditionalContentLabel">Add additional content</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title :</label>
+                    <%= f.text_field :title_content, value: @content_data.title_content, class: "form-control", id: "additional-title" %>
+                </div>
+                <div class="mb-3">
+                    <label for="additional_id" class="form-label">Additional Content :</label>
+                    <%= f.select :additional_id, get_additional_data() , { include_blank: "-- Select Additional Content --", selected: @content_data.additional_content_id } , class: "form-select w-100", id: "additional_id" %>
+                </div>
+                <% c_format = cover.blank? ? "1" : "2" %>
+                <%= f.hidden_field :format, value: c_format %>
+                <%= f.hidden_field :is_child_of, value: cover %>
+                <%= f.hidden_field :update_id, value: @content_data.id, id: "update-additional-id" %>
+            </div>
+        
+            <div class="modal-footer">
+                <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
+                <%= f.submit "Add", class: "btn btn-primary", id: "submit-additional-content-btn" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

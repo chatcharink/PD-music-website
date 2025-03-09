@@ -1,0 +1,57 @@
+<% keys = @sub_content.keys %>
+<% if keys == ["no_tab_name"] %>
+    <div class="d-flex row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        <% @sub_content["no_tab_name"].each do |val| %>
+            <div class="col-auto position-relative">
+                <%= link_to "#{root_url()}#{params["menu"]}/sub?cover_id=#{val["id"]}", class: "link-to-sub-menu" do %>
+                <div class="card mb-3 me-3 category-card-menu">
+                    <div class="card-body p-0">
+                        <% source = val["image"].attached? ? url_for(val["image"]) : "/no_image.jpg" %>
+                        <img src="<%= source %>" class="card-img-top cover-image-tab w-100">
+                    </div>
+                </div>
+                <div class="div-card-body p-2 position-sticky" style="bottom: 20px">
+                    <h3 class="card-title ms-3"><b><%= val["title_content"] %></b></h3>
+                </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <% index = 0 %>
+        <% @sub_content.each do |k, v| %>
+            <% next if k.blank? %>
+            <% is_active = index == 0 ? "active" : "" %>
+            <% tab_name = k == "no_tab_name" ? "Others" : k.capitalize %>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link <%= is_active %>" id="sub-<%= k %>-tab" data-bs-toggle="tab" data-bs-target="#sub-<%= k %>-tab-pane" type="button" role="tab" aria-controls="sub-<%= k %>-tab-pane" aria-selected="true"><%= tab_name %></button>
+            </li>
+            <% index += 1 %>
+        <% end %>
+    </ul>
+    <div class="tab-content mb-3">
+        <% @sub_content.each_with_index do |(k, v), index| %>
+            <% is_active = index == 0 ? "active" : "" %>
+            <div class="tab-pane fade show <%= is_active %>" id="sub-<%= k %>-tab-pane" role="tabpanel" aria-labelledby="sub-<%= k %>-tab" tabindex="0">
+                <div class="d-flex row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                    <% v.each do |val| %>
+                        <div class="col-auto position-relative">
+                            <%= link_to "#{root_url()}#{params["menu"]}/sub?cover_id=#{val["id"]}", class: "link-to-sub-menu" do %>
+                            <div class="card mb-3 me-3 category-card-menu">
+                                <div class="card-body p-0">
+                                    <% source = val["image"].attached? ? url_for(val["image"]) : "/no_image.jpg" %>
+                                    <img src="<%= source %>" class="card-img-top cover-image-tab w-100">
+                                </div>
+                            </div>
+                            <div class="div-card-body p-2 position-sticky" style="bottom: 20px">
+                                <h3 class="card-title ms-3"><b><%= val["title_content"] %></b></h3>
+                            </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="w-100 mb-5">
+    <%= render partial: "frontend/banner" %>
+</div>
+
+<div class="row div-content m-auto" style="height: calc(100% - 100px) !important;">
+    <div class="col-4">
+        <div class="box-content text-center mb-5 p-5">
+            <img src="<%= APP_CONFIG[:application_path] %>/pictures/logo-removebg.png" width= "125px" height= "75px"/>
+            <h4 class="text-center"><b><%= @setting["company"]["company_name"] %></b></h4>
+            <span><%= @setting["company"]["address"] %></span>
+        </div>
+        <div class="social-icon mb-3">
+            <h4 class="mb-3">ช่องทางการติดต่อ</h4>
+            <% if @setting["company"]["mobile"].present? %>
+                <h5 class="mb-3">เบอร์โทรศัพท์: <%= @setting["company"]["mobile"] %></h5>
+            <% end %>
+            <% if @setting["company"]["email"].present? %>
+                <h5 class="mb-3">Email: <%= @setting["company"]["email"] %></h5>
+            <% end %>
+
+            <% if @setting["social"].present? %>
+                <% @setting["social"].each do |social, link| %>
+                    <%= link_to "#{link}", class: "nav-link mb-3", target: "_blank" do %>
+                        <img src="<%= APP_CONFIG[:application_path] %>/pictures/<%= social%>.png" width= "40px" height= "40px"/>
+                        <span><%= social.capitalize %></span>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="col-8 h-100">
+        <% if @setting["company"].present? %>
+            <div class="box-content p-3 h-90">
+                <iframe src="<%= @setting["company"]["google_map"] %>" width="100%" height="100%"></iframe>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<h5 class="m-3"><%= params["menu"].capitalize %></h5>
+<!--
+<div class="div_menu_table m-auto my-3 p-3">
+    <form class="row g-3">
+        <div class="col-auto">
+            <label for="filter-title" class="visually-hidden">Title</label>
+            <input type="text" readonly class="form-control-plaintext text-end" id="filter-title" value="Title: ">
+        </div>
+        <div class="col-auto">
+            <label for="inputTitle" class="visually-hidden">Title</label>
+            <input type="text" class="form-control" id="inputTitle">
+        </div>
+        <div class="col-auto">
+            <label for="filter-status" class="visually-hidden">Status</label>
+            <input type="text" readonly class="form-control-plaintext text-end" id="filter-status" value="Status: ">
+        </div>
+        <div class="col-auto">
+            <label for="selectStatus" class="visually-hidden">Select status</label>
+            <%# select_tag :status, options_for_select([["Active", "active"], ["Deleted", "deleted"]]), include_blank: "All status", class: "form-select", id: "selectStatus" %>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3 mx-5">Search</button>
+        </div>
+    </form>
+</div>
+-->
+<div class="content">
+    <%= render partial: "additional_content/table_#{params["menu"]}" %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteDialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmDeleteDialogLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteDialogLabel">Confirm Delete</h5>
+            </div>
+            
+            <div class="modal-body">
+                <span class="text-center" id="confirm-delete-text"></span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" id="close-confirm-delete-dialog" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirm-delete-button">Confirm</button>
+            </div>
+        
+        </div>
+    </div>
+</div>

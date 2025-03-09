@@ -1,0 +1,40 @@
+<div class="d-inline">
+    <h4 class="m-3 d-inline"><b>Banner: </b></h4>
+</div>
+
+<div class="box-content m-auto my-3 p-3" id="box-content-banner-image" data-controller="banner">
+    
+    <%= render partial: "content/upload_image" %>
+    
+</div>
+
+<h4 class="m-3"><b>Content: </b></h4>
+<div class="box-content m-auto my-3 p-3" data-controller="content">
+    <input type="hidden" id="screen-menu" value="<%= params["menu"]%>">
+    <input type="hidden" id="screen-sub-menu" value="<%= params["cover_id"]%>">
+
+    <div class="show-content-format-data">
+        <%= render partial: "content/format1" %>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteDialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmDeleteDialogLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteDialogLabel">Confirm Delete</h5>
+            </div>
+            
+            <div class="modal-body">
+                <span class="text-center" id="confirm-delete-text"></span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" id="close-confirm-delete-dialog" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirm-delete-button">Confirm</button>
+            </div>
+        
+        </div>
+    </div>
+</div>

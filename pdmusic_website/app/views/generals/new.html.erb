@@ -1,0 +1,85 @@
+<div class="d-inline">
+    <h4 class="m-3 d-inline"><b>General Settings: </b></h4>
+</div>
+
+<div class="box-content m-auto my-3 p-3" data-controller="general-setting">
+    <ul class="nav nav-tabs my-3" id="generalTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="company-tab" data-bs-toggle="tab" data-bs-target="#company" type="button" role="tab" aria-controls="company" aria-selected="true">Company</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" type="button" role="tab" aria-controls="social" aria-selected="false">Social</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="company" role="tabpanel" aria-labelledby="company-tab">
+            <%= form_for "form_general" , url: general_path(format: :json, tab: "company"), method: :POST, html: { id: "form_general_company", class: "w-100" } do |f|  %>
+                <div class="mb-3">
+                    <label for="company-name" class="form-label">Company name: </label>
+                    <%= f.text_field :company_name, value: @setting["company"]["company_name"], class: "form-control", id: "company-name" %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="company-mobile" class="form-label">Mobile: </label>
+                    <%= f.text_field :mobile, value: @setting["company"]["mobile"], class: "form-control", id: "company-mobile" %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="company-email" class="form-label">Email: </label>
+                    <%= f.text_field :email, value: @setting["company"]["email"], class: "form-control", id: "company-email" %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="company-fax" class="form-label">Fax: </label>
+                    <%= f.text_field :fax, value: @setting["company"]["fax"], class: "form-control", id: "company-fax" %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="company-address" class="form-label">Address: </label>
+                    <%= f.text_field :address, value: @setting["company"]["address"], class: "form-control", id: "company-address" %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="company-gg_map" class="form-label">Google Map: </label>
+                    <%= f.text_field :google_map, value: @setting["company"]["google_map"], class: "form-control", id: "company-gg_map" %>
+                </div>
+
+                <div class="mb-3">
+                    <%= f.submit :submit, value: "Submit", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+
+        <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+            <%= form_for "form_general" , url: general_path(format: :json, tab: "social"), method: :POST, html: { id: "form_general_social", class: "w-100" } do |ff|  %>
+                <div class="mb-3">
+                    <label for="social-lemon" class="form-label">Lemon: </label>
+                    <%= ff.text_field :lemon, value: @setting["social"]["lemon"], class: "form-control", id: "social-lemon" %>
+                </div>
+                <div class="mb-3">
+                    <label for="social-tiktok" class="form-label">Tiktok: </label>
+                    <%= ff.text_field :tiktok, value: @setting["social"]["tiktok"], class: "form-control", id: "social-tiktok" %>
+                </div>
+                <div class="mb-3">
+                    <label for="social-facebook" class="form-label">Facebook: </label>
+                    <%= ff.text_field :facebook, value: @setting["social"]["facebook"], class: "form-control", id: "social-facebook" %>
+                </div>
+                <div class="mb-3">
+                    <label for="social-instagram" class="form-label">Instagram: </label>
+                    <%= ff.text_field :instagram, value: @setting["social"]["instagram"], class: "form-control", id: "social-instagram" %>
+                </div>
+                <div class="mb-3">
+                    <label for="social-youtube" class="form-label">Youtube: </label>
+                    <%= ff.text_field :youtube, value: @setting["social"]["youtube"], class: "form-control", id: "social-youtube" %>
+                </div>
+                <div class="mb-3">
+                    <label for="social-line" class="form-label">Line: </label>
+                    <%= ff.text_field :line, value: @setting["social"]["line"], class: "form-control", id: "social-line" %>
+                </div>
+                <div class="mb-3">
+                    <%= ff.submit :submit, value: "Submit", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,460 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import "actiontext";
+
+html, body { 
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+  
+h1, h2, h3, h4, h5, span, a, label, li, p, .btn, td, th, div, select, .form-select, .form-control-plaintext, .form-control {
+    font-family: "Athiti", sans-serif !important;
+    font-weight: 500;
+    font-style: normal;
+    color: #3b3c66;
+}
+  
+input, button, input:focus, input:active, button:focus, button:active{
+    outline: none !important;
+    box-shadow: none !important;
+}
+  
+input::placeholder {
+    font-family: "Athiti", sans-serif !important;
+    font-weight: 400;
+    font-style: normal;
+    color: #3b3c66;
+}
+.form-control[readonly] {
+    background-color: #e9ecef;
+    // opacity: 1;
+} 
+.w-90{ width: 90% !important; }
+.w-80{ width: 80% !important; }
+.w-35{ width: 35% !important; }
+.h-90{ height: 90% !important; }
+.h-80{ height: 80% !important; }
+.align-content-center{
+    align-content: center !important;
+}
+.justify-center{
+    justify-items: center !important;
+}
+.alert-icon-error, .text-error{
+    color: #ff220f !important;
+}
+  
+.alert-icon-success, .text-success{
+    color: #53d81e !important;
+}
+  
+.alert-icon-info, .text-info{
+    color: #6c6de8 !important;
+}
+  
+.tooltip-text{
+    font-family: "Athiti", sans-serif !important;
+    font-weight: 500;
+    font-style: normal;
+    color: #fff;
+}
+  
+.toast-body, .toast-header{
+    font-family: "Athiti", sans-serif !important;
+    // font-weight: 500;
+    font-style: normal;
+}
+  
+.toast-body-error{
+    background-color: #f8d7da !important;
+}
+  
+.toast-body-success{
+    background-color: #ecffe4 !important;
+}
+  
+.toast-body-info{
+    background-color: #ececff !important;
+}
+
+.btn-primary{
+    background-color: rgb(33,37,41) !important;
+    border: 1px solid rgb(33,37,41) !important;
+    color: #fbfbfb !important;
+}
+
+.btn-primary:hover{
+    background-color: #727272 !important;
+    border: 1px solid #727272 !important;
+    color: #fbfbfb !important;
+}
+
+.btn-primary-delete{
+    background-color: #fbfbfb !important;
+    border: 1px solid #ff220f !important;
+    color: #ff220f !important;
+}
+
+.btn-primary-delete:hover{
+    background-color: #ff220f !important;
+    border: 1px solid #ff220f !important;
+    color: #fbfbfb !important;
+}
+
+.btn-outline-primary{
+    background-color: #fbfbfb !important;
+    border: 1px solid rgb(33,37,41) !important;
+    color: rgb(33,37,41) !important;
+}
+
+.hamburger-icon{ 
+    padding: 5px;
+    border: 1px solid #fff !important;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+.hamburger-icon:hover{
+    background-color: rgb(33,37,41) !important;
+    border: 1px solid rgb(33,37,41) !important;
+    color: #fbfbfb !important;
+}
+
+.div-side-menu{
+    width: 300px !important;
+    height: 100% !important;
+    border-right: 1px solid #d7d7d7;
+    background-color: #fff !important;
+    transition: .5s;
+    z-index: 999;
+    // position: absolute;
+    // bottom: 0;
+}
+  
+.div-side-menu.mini{
+    width: 60px !important;
+    transition: .5s;
+}
+
+.nav-side-menu, .side-menu{
+    color: #3b3c66 !important;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+  
+// .side-menu.active{
+//     color: #fbfbfb !important;
+//     .nav-side-menu{
+//       background-color: #727272;
+//       border-top-right-radius: 5px;
+//       border-bottom-right-radius: 5px;
+//       span, svg { 
+//         color: #fff !important;
+//       }
+//     }
+// }
+  
+.nav-side-menu:hover{
+    background-color: rgb(33,37,41) !important;
+    border-top-right-radius: 5px;
+    color: #fbfbfb !important;
+    .side-menu, .txt-menu{
+      color: #fbfbfb !important;
+    }
+}
+
+.nav-side-menu.active{
+    background-color: rgb(33,37,41) !important;
+    border-top-right-radius: 5px;
+    color: #fbfbfb !important;
+    .side-menu, .txt-menu{
+      color: #fbfbfb !important;
+    }
+}
+
+.div-body{
+    margin-left: 300px;
+    transition: .5s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 100px) !important;
+    // background-image: linear-gradient(90deg, #6c6de8, #44dbdc);
+    // background-attachment: fixed;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+}
+  
+.div-body.full{
+    margin-left: 60px;
+    transition: .5s;
+}
+
+.truncate{
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//Content
+.box-content{
+    width: 95%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+}
+
+.div-no-picture{
+    background-color: rgb(33,37,41);
+    color: #fbfbfb;
+    padding: 3rem;
+    text-align: center;
+}
+
+.upload-banner-btn{
+    display: none;
+}
+
+.upload-banner{
+    width: 100%;
+    text-align: center;
+    border: 2px dashed rgb(33,37,41);
+    cursor: pointer;
+    svg{ cursor: pointer; }
+}
+
+.show-image-banner{
+    // width: 100% !important;
+    height: 150px !important; 
+    overflow: hidden;
+}
+
+.input-file{
+    align-content: center;
+}
+
+// .trix-button-group--file-tools{
+//     display: none !important;
+// }
+
+.nav-link{
+    color: rgb(33,37,41) !important;
+}
+
+.nav-link.active{
+    background-color: rgb(33,37,41) !important;
+    color: #fbfbfb !important;
+}
+
+.div-show-content-image{
+    width: 100%;
+    overflow: hidden;
+}
+
+.status-active{
+    background-color: rgba(40,199,111,.12);
+    color: #28c76f !important;
+}
+
+.status-inactive{
+    background-color: rgba(255,222,37,.12);
+    color: #ffde25 !important;
+}
+
+.status-pre_delete{
+    background-color: rgba(33,37,41,.12);
+    color: #c0c0c0 !important;
+}
+
+.status-deleted{
+    background-color: rgba(234,84,85,.12);
+    color: #ea5455 !important;
+}
+
+.dt-empty{
+    text-align: center;
+}
+
+.pagination{
+    justify-content: flex-end;
+}
+
+table > thead > tr > th{
+    background-color: rgb(33,37,41) !important;
+    color: #fbfbfb !important;
+    font-weight: 600;
+    padding: 1.5rem 0.5rem !important;
+    span{ color: #fbfbfb !important; }
+}
+
+table > thead > tr > th:first-child, table > tbody > tr > td:first-child{
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+}
+
+table > thead > tr > th:last-child, table > tbody > tr > td:last-child{
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+table > tbody > tr > td{
+    cursor: pointer;
+    padding: 1.5rem 0.5rem !important;
+}
+
+table{
+    border-collapse: separate !important;
+    border-spacing: 0 15px;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+#div-add-picture-to-gallery{
+    border: 2px dashed #28c76f;
+}
+.upload-picture-gallery{
+    color: #28c76f;
+    cursor: pointer;
+}
+
+.div-form-user{
+    width: 80%;
+}
+
+
+
+///// FRONTEND
+.div-footer{
+    position: sticky; 
+    bottom: 0;
+    background-color: rgb(33,37,41) !important;
+    color: #fbfbfb !important;
+    .nav-link, p{ color: #fbfbfb !important; }
+}
+.front-nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.frontend-nav-item:hover{
+    border-radius: 1rem;
+    background-color: rgb(33,37,41) !important;
+    .nav-link{ color: #fbfbfb !important; }
+}
+
+.carousel-item {
+    width: 100%;
+    height: 70vh !important;
+}
+
+.front-image-content{
+    border-radius: 3rem;
+    // min-height: 275px !important;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.front-text-content{
+    font-size: 18px !important;
+}
+
+.category-card-menu{
+    width: 18rem;
+    height: 18rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.div-card-body{
+    position: absolute !important;
+    bottom: 30px !important;
+    background-color: rgb(33,37,41) !important;
+    color: #fbfbfb !important;
+    h2,h3{ color: #fbfbfb !important; }
+    width: 14rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.cover-image-tab{
+    min-height: 18rem;
+    object-fit: cover;
+}
+
+.div-html-feedback{
+    iframe{ width: 100% !important; }
+}
+
+.grid-picture{
+    padding-bottom: 0px !important;
+}
+
+.div-content{
+    width: 80% !important;
+}
+
+.form-check-input:checked {
+    background-color: rgb(33,37,41) !important;
+    border-color: rgb(33,37,41) !important;
+}
+
+@media only screen and (max-width: 1024px) {
+    .div-body{
+      margin-left: 0px !important;
+    }
+  
+    .div-side-menu{
+      display: none;
+    }
+  
+    .navbar-logo{
+      font-size: 18px;
+    }
+
+    .carousel-item {
+        height: 25vh !important;
+    }
+
+    .div-content{
+        width: 90% !important;
+    }
+
+    .div-form-user{
+        width: 90%;
+    }
+
+    #pubilc-content-icon{
+        display: inline;
+    }
+}
+
+@media only screen and (max-width: 567px) {
+    .carousel-item {
+        height: 20vh !important;
+    }
+
+    .div-form-user{
+        width: 90%;
+    }
+
+    #pubilc-content-icon{
+        display: none;
+    }
+} 

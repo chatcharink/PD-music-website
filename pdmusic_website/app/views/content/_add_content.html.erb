@@ -1,0 +1,166 @@
+<!-- Modal -->
+<div class="modal fade" id="addContent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addContent1Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <%= form_for @content_data , url: content_path(format: :json, menu: menu, cover_id: cover), method: :POST, html: { id: "form_create_content", class: "w-100" } do |f| %>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addContent1Label">Add content</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="title-tab" data-bs-toggle="tab" data-bs-target="#nav-title" type="button" role="tab" aria-controls="nav-title" aria-selected="true">Title</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="image-tab" data-bs-toggle="tab" data-bs-target="#nav-image" type="button" role="tab" aria-controls="nav-image" aria-selected="false">Image</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="content-text-tab" data-bs-toggle="tab" data-bs-target="#nav-content-text" type="button" role="tab" aria-controls="nav-content-text" aria-selected="false">Content</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="content-table-tab" data-bs-toggle="tab" data-bs-target="#nav-content-table" type="button" role="tab" aria-controls="nav-content-table" aria-selected="false">Table</button>
+                    </li>
+                </ul>
+                <div class="tab-content m-3" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-title" role="tabpanel" aria-labelledby="nav-title-tab">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title :</label>
+                            <%= f.text_field :title_content, value: @content_data.title_content, class: "form-control", id: "title" %>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url-title" class="form-label">URL Title :</label>
+                            <%= f.text_field :title_url, value: @content_data.title_url, class: "form-control", id: "url-title" %>
+                        </div>
+                        <div class="mb-3">
+                            <label for="url" class="form-label">URL :</label>
+                            <%= f.text_field :url, value: @content_data.url, class: "form-control", id: "url", placeholder: "http://example.com" %>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-image" role="tabpanel" aria-labelledby="nav-image-tab">
+                        <div class="row">
+                            <% source = @content_data.image.attached? ? url_for(@content_data.image) : "" %>
+                            <% if source.blank? %>
+                                <div class="col-6 div-no-picture rounded-3" id="div-no-image-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                        <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0"/>
+                                    </svg>
+                                </div>
+                                <div class="col-6 show-content-image" id="div-content-image" style="display: none;">
+                                    <div class="div-show-content-image">
+                                        <img id="content-image" class="w-100" src="<%= source %>" style="object-fit: cover;"/>
+                                    </div>
+                                </div>
+                            <% else %>
+                                <div class="col-6 div-no-picture rounded-3" id="div-no-image-content" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                        <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0"/>
+                                    </svg>
+                                </div>
+                                <div class="col-6 show-content-image" id="div-content-image">
+                                    <div class="div-show-content-image">
+                                        <img id="content-image" class="w-100" src="<%= source %>" style="object-fit: cover;"/>
+                                    </div>
+                                </div>
+                            <% end %>
+                            <div class="col-6 input-file">
+                                <%= f.file_field :image, accept: ".png, .jpg, .jpeg", data: { action: "change->content#uploadPicture" }, class: "upload-content-image-btn", id: "upload-content-image-btn"  %>
+                                <%= f.hidden_field :is_image_update, value: "false", id: "is-update-image" %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-content-text" role="tabpanel" aria-labelledby="nav-content-text-tab">
+                        <div class="mb-3">
+                            <label for="content_trix_input_content" class="form-label">Content :</label>
+                            <%= f.rich_text_area :content, value: @content_data.content, class: "form-control action-text-content", id: "content", data: { controller: "trix" } %>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-content-table" role="tabpanel" aria-labelledby="nav-content-table-tab">
+                        <% if @content_data.table.blank? %>
+                        <div class="mb-3">
+                            <label for="table-title" class="form-label">Table title :</label>
+                            <%= f.text_field "table[title]", value: "", class: "form-control", id: "table-title" %>
+                        </div>
+                        <div class="mb-2 float-end">
+                            <button type="button" class="btn btn-outline-primary" data-action="click->content#addColumn">+ Add column</button>
+                            <button type="button" id="btn-delete-column" class="btn btn-primary mx-3" data-action="click->content#deleteColumn" style="display: none;">X Delete column</button>
+                        </div>
+                        <div class="mb-3 table-responsive w-100">
+                            <table class="table table-hover w-100">
+                                <thead>
+                                    <tr class="table-row-header">
+                                        <th class="content-header justify-center"><%= f.text_field "table[header][column1]", value: "", class: "form-control w-90", id: "table-header-1", placeholder: "Column 1" %></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-content">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary" data-action="click->content#addRow">+ Add row</button>
+                            <button type="button" id="btn-delete-row" class="btn btn-primary mx-3" data-action="click->content#deleteRow" style="display: none;">X Delete row</button>
+                        </div>
+                        <% else %>
+                        <% json_table = JSON.parse(@content_data.table.to_json) %>
+                        <% headers = json_table["header"].values %>
+                        <div class="mb-3">
+                            <label for="table-title" class="form-label">Table title :</label>
+                            <%= f.text_field "table[title]", value: json_table["title"], class: "form-control", id: "table-title" %>
+                        </div>
+                        
+                        <div class="mb-2 float-end">
+                            <button type="button" class="btn btn-outline-primary" data-action="click->content#addColumn">+ Add column</button>
+                            <% is_display = headers.length > 1 ? "inline" : "none" %>
+                            <button type="button" id="btn-delete-column" class="btn btn-primary mx-3" data-action="click->content#deleteColumn" style="display: <%= is_display %>;">X Delete column</button>
+                        </div>
+                        <div class="mb-3 table-responsive w-100">
+                            <table class="table table-hover w-100">
+                                <thead>
+                                    <tr class="table-row-header">
+                                        <% headers.each_with_index do |h, index| %>
+                                            <th class="content-header justify-center"><%= f.text_field "table[header][column#{index+1}]", value: h, class: "form-control w-90", id: "table-header-#{index+1}", placeholder: "Column 1" %></th>
+                                        <% end %>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-content">
+                                    <% index = 0 %>
+                                    <% while index >= 0 %>
+                                        <% if json_table["row#{index+1}"].blank? %>
+                                            <% index = -1 %>
+                                            <% break %>
+                                        <% end %>
+                                        <% row = json_table["row#{index+1}"].values %>
+                                        <tr class="tr-row">
+                                            <% row.each_with_index do |r, i| %>
+                                                <td class="td-content content-row-<%= index+1 %> justify-center"><%= f.text_field "table[row#{index+1}][column#{i+1}]", value: r, class: "form-control w-90" %></td>
+                                            <% end %>
+                                        </tr>
+                                        <% index += 1 %>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary" data-action="click->content#addRow">+ Add row</button>
+                            <button type="button" id="btn-delete-row" class="btn btn-primary mx-3" data-action="click->content#deleteRow" style="display: none;">X Delete row</button>
+                        </div>
+                        <% end %>
+                    </div>
+                    <% c_format = cover.blank? ? "1" : "2" %>
+                    <%= f.hidden_field :format, value: c_format %>
+                    <%= f.hidden_field :is_child_of, value: cover %>
+                    <%= f.hidden_field :update_id, value: @content_data.id, id: "update-id" %>
+                </div>
+            </div>
+        
+            <div class="modal-footer">
+                <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
+                <%= f.submit "Add", class: "btn btn-primary", id: "submit-content-btn" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

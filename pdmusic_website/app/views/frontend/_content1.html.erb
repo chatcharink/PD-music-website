@@ -1,0 +1,82 @@
+<% @content_data.each_with_index do |data, index| %>
+    <% if data.additional_content_id.present? %>
+        <% if data.title_content.present? %>
+            <div class="my-5">
+                <h3 class="m-3 mb-3"><b><%= data.title_content %></b></h3>
+            </div>
+        <% end %>
+        <%= render partial: "frontend/additional", locals: {data: data} %>
+    <% else %>
+        <div class="row mb-3">
+            <% source = data.image.attached? ? url_for(data.image) : "" %>
+            <% if source.present? && (data.content.present? || data.title_content.present?) %>
+                <% if (index % 2) == 0 || index == 0 %>
+                    <div class="col-sm-6 align-content-center">
+                        <div class="front-image-content w-100 text-center">
+                            <img id="image-content-<%= index+1 %>" src="<%= source %>" alt="" class="w-100" style="object-fit: cover"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 align-content-center">
+                        <div class="mb-3">
+                            <h3 class="m-3 mb-3"><b><%= data.title_content%></b></h3>
+                            <div class="front-text-content mx-5 my-3"><%= data.content %></div>
+                        </div>
+                        <% unless data.url.blank? %>
+                            <div class="content-link mb-3 ms-5">
+                                <% title_url = data.title_url.blank? ? "More detail" : data.title_url %>
+                                <%= link_to data.url, class: "btn btn-primary" do %>
+                                    <%= title_url %>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle ms-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+                                    </svg>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <div class="col-sm-6 align-content-center">
+                        <div class="mb-3">
+                            <h3 class="m-3 mb-3"><b><%= data.title_content %></b></h3>
+                            <div class="front-text-content mx-5 my-3"><%= data.content %></div>
+                        </div>
+                        <% unless data.url.blank? %>
+                            <div class="content-link mb-3 ms-5">
+                                <% title_url = data.title_url.blank? ? "More detail" : data.title_url %>
+                                <%= button_to data.url, class: "btn btn-primary" do %>
+                                    <%= title_url %>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle ms-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+                                    </svg>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="col-sm-6 align-content-center">
+                        <div class="front-image-content w-100 text-center">
+                            <% source = data.image.attached? ? url_for(data.image) : "" %>
+                            <img id="image-content-<%= index+1 %>" src="<%= source %>" alt="" class="w-100" style="object-fit: cover"/>
+                        </div>
+                    </div>
+                <% end %>
+            <% else %>
+                <% if data.title_content.present? %>
+                    <div class="mb-3">
+                        <h3 class="m-3 mb-3"><b><%= data.title_content %></b></h3>
+                    </div>
+                <% end %>
+                <div class="col-12">
+                    <% if source.present? %>
+                        <div class="div-image-content w-100 text-center" style="overflow: hidden;">
+                            <img id="image-content-<%= index+1 %>" src="<%= source %>" alt="" class="w-80" style="border-radius: 2rem;"/>
+                        </div>
+                    <% else %>
+                        <div class="front-text-content mb-3 mx-3"><%= data.content %></div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+
+        <%= render partial: "frontend/table", locals: {data: data} %>
+
+    <% end %>
+<% end %>

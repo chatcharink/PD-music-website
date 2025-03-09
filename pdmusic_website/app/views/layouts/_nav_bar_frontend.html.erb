@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light front-nav-bar">
+    <div class="container-fluid w-80 m-auto">
+        <a class="navbar-brand ms-3" href="#">
+            <img src="/pictures/logo-removebg.png" alt="" width="85" height="60" class="d-inline">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <% menu.each_with_index do |m, index| %>
+                    <% next if m.header.to_i < 1 %>
+                    <li class="nav-item frontend-nav-item mx-3">
+                        <%= link_to m.menu_name.capitalize, "#{root_path()}#{m.menu_tag.downcase}", class:"nav-link", id: m.menu_tag, "aria-current": "page" %>
+                    </li>
+                <% end %>
+                <li class="nav-item frontend-nav-item mx-3">
+                    <%= link_to "ติดต่อเรา", contact_us_path(), class:"nav-link", id: "contact-us", "aria-current": "page" %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
