@@ -1,0 +1,116 @@
+<div class="div-profile-setting p-4 ">
+
+    <% if @user.username.blank? %>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="username" class="form-label">Username</label>
+            <%= f.text_field :username, value: @user.firstname, class: "form-control", id: "username" %>
+        </div>
+        <div class="col mb-3">
+            <label class="form-label">Password</label>
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="modal" data-bs-target="#setPassword">Set password</button>
+            <%= f.text_field :correct_password, value: "", class: "form-control d-none", id: "correct_password" %>
+        </div>
+    </div>
+    <% end %>
+
+    <div class="row">
+        <div class="col mb-3">
+            <label for="firstname" class="form-label">Firstname</label>
+            <%= f.text_field :firstname, value: @user.firstname, class: "form-control", id: "firstname" %>
+        </div>
+        <div class="col mb-3">
+            <label for="lastname" class="form-label">Lastname</label>
+            <%= f.text_field :lastname, value: @user.lastname, class: "form-control", id: "lastname" %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col mb-3">
+            <label for="email" class="form-label">Email</label>
+            <%= f.text_field :email, value: @user.email, class: "form-control", id: "email" %>
+        </div>
+        <div class="col mb-3">
+            <label for="phone_number" class="form-label">Phone number</label>
+            <%= f.text_field :phone_number, value: @user.phone_number, class: "form-control", id: "phone_number" %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col mb-3">
+            <label for="status" class="form-label">Status :</label>
+            <%= f.select :status, [["Active", "active"], ["Inactive", "inactive"], ["Deleted", "deleted"]], { prompt: '-- Please select status --', selected: @user.status }, class:"form-select", id: "status" %>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <% state = params["id"].blank? ? "Create" : "Update" %>
+        <%= f.submit state, class: "btn btn-primary w-35" %>
+    </div>
+</div>
+
+<div class="modal fade" id="setPassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="setPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="setPasswordLabel">Set password</h5>
+            </div>
+            <div class="modal-body" data-controller="user">
+                <div class="col mb-3">
+                    <label for="password" class="form-label" >Password</label>
+                    <%= f.password_field :password, value: @user.lastname, class: "form-control d-inline", id: "password", data: { action: "keyup->user#validatePassword", "user-target": "password" } %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses position-absolute mt-2 view-password" viewBox="0 0 16 16" data-action="mousedown->user#showPassword mouseup->user#hidePassword">
+                        <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A2 2 0 0 0 8 6c-.532 0-1.016.208-1.375.547M14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0"/>
+                    </svg>
+                    <div id="passwordHelpBlock" class="form-text">
+                        <p class="mb-1 ms-2 password-rule">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16" style="display: none;">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                            </svg> มีตัวอักษรอย่างน้อย 8 ตัวอักษร
+                        </p>
+                        <p class="mb-1 ms-2 password-rule">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16" style="display: none;">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                            </svg> มีตัวอักษรพิมพ์ใหญ่และพิมพ์เล็กอย่างน้อย 1 ตัว
+                        </p>
+                        <p class="mb-1 ms-2 password-rule">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16" style="display: none;">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                            </svg> มีตัวเลขอย่างน้อย 1 ตัว
+                        </p>
+                        <p class="mb-1 ms-2 password-rule">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16" style="display: none;">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                            </svg> มีเครื่องหมายหรืออักขระพิเศษอย่างน้อย 1 ตัว (~`!@#$%^&*_-+=:;\"\',.?)
+                        </p>
+                    </div>
+                    <%= f.hidden_field :password_valid, value: 0, id: "password_valid" %>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm password :</label>
+                    <%= f.password_field :confirm_password, class: "form-control d-inline", id: "confirm_password", data: { action: "keyup->user#enableSetPassword", "user-target": "confirmPassword" } %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses position-absolute mt-2 view-password" viewBox="0 0 16 16" data-action="mousedown->user#showConfirmPassword mouseup->user#hideConfirmPassword">
+                        <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A2 2 0 0 0 8 6c-.532 0-1.016.208-1.375.547M14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-set-user-password" data-action="click->user#setPassword" data-bs-dismiss="modal" disabled>Set password</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

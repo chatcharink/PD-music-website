@@ -1,0 +1,35 @@
+<div class="w-100 text-center div-footer p-3">
+    <% setting = read_yml_setting() %>
+    <ul class="nav justify-content-center">
+        <% setting["social"].each do |social, link| %>
+        <li class="nav-item">
+            <%= link_to "#{link}", class: "nav-link mb-3", target: "_blank" do %>
+            <img src="<%= APP_CONFIG[:application_path] %>/pictures/<%= social %>.png" width= "25px" height= "25px"/>
+            <% end %>
+        </li>
+        <% end %>
+    </ul>
+
+    <ul class="nav justify-content-center mb-3">
+        <% menu.each_with_index do |m, index| %>
+            <% next if m.footer.to_i < 1 %>
+            <li class="nav-item">
+                <%= link_to m.menu_name.capitalize, "#{root_path()}#{m.menu_tag.downcase}", class:"nav-link", id: m.menu_tag, "aria-current": "page" %>
+            </li>
+        <% end %>
+        <li class="nav-item">
+            <%= link_to "ติดต่อเรา", contact_us_path(), class:"nav-link", id: "contact-us", "aria-current": "page" %>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-9 text-start ps-5">
+            <p><b>ติดต่อเรา</b></p>
+            <p>โทรศัพท์: <%= setting["company"]["mobile"] %></p>
+            <p>ที่อยู่: <%= setting["company"]["address"] %></p>
+        </div>
+        <div class="col-md-3 text-center">
+            <img src="<%= APP_CONFIG[:application_path] %>/pictures/white-logo-removebg.png" width= "125px" height= "75px"/>
+        </div>
+    </div>
+</div>

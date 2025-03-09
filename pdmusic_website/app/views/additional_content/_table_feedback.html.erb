@@ -1,0 +1,23 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-end mx-5 my-3" data-bs-toggle="modal" data-bs-target="#addFeedback">+ Add Feedback</button>
+
+<div data-controller="feedback">
+    <div class="div_menu_table table-responsive w-100 m-auto my-3 p-3 ">
+        <%= content_tag :table, class: "table table-hover", id: "table-feedback-list", width: "100%", data: { url: additional_datatable_path(format: :json, menu: params["menu"])} do %>
+            <thead>
+                <tr>
+                    <th class="px-3" width="50%">Feedback</th>
+                    <th class="text-center" width="30%">Status</th>
+                    <th class="text-center" width="20%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        <% end %>
+    </div>
+
+    <div class="show-dialog">
+        <%= render partial: "additional_content/feedback_dialog", locals: { menu: params["menu"], content: @content } %>
+    </div>
+</div>

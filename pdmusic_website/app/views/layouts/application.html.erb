@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PdmusicWebsite</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  </head>
+
+  <% if ["show_content", "show_sub_content"].include?(params[:action]) || (params[:controller] == "generals" && params[:action] == "index") %>
+    <% menu = get_side_menu() %>
+    <body>
+      <%= render partial: "layouts/nav_bar_frontend", locals: {menu: menu} %>
+      <%= yield %>
+    </body>
+
+    <footer>
+      <%= render partial: "layouts/footer", locals: {menu: menu} %>
+    </footer>
+  <% else %>
+    <body>
+      <%= render partial: "layouts/flash_alert" %>
+      <% unless params[:controller] == "login" %>
+        <div>
+          <%= render partial: "layouts/nav_bar" %>
+        </div>
+        <div class="div-side-menu pt-3 position-absolute">
+          <%= render partial: "layouts/nav_side_bar" %>
+        </div>
+      <% end %>
+
+      <div class="div-body bg-light">
+        <%= yield %>
+      </div>
+    </body>
+  <% end %>
+</html>
