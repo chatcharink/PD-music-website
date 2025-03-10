@@ -9,7 +9,7 @@
     <% else %>
         <div class="row mb-3">
             <% source = data.image.attached? ? url_for(data.image) : "" %>
-            <% if source.present? && (data.content.present? || data.title_content.present?) %>
+            <% if source.present? && (data.content.present?) %>
                 <% if (index % 2) == 0 || index == 0 %>
                     <div class="col-sm-6 align-content-center">
                         <div class="front-image-content w-100 text-center">

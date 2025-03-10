@@ -415,6 +415,21 @@ table{
     border-color: rgb(33,37,41) !important;
 }
 
+.additional-title-school{
+    display: block;
+}
+.additional-title-gallery{
+    display: none;
+}
+.additional-image-school{
+    width: 153px;
+    height: 153px;
+}
+.additional-image-gallery{
+    width: 100%;
+    max-height: 153px;
+}
+
 @media only screen and (max-width: 1024px) {
     .div-body{
       margin-left: 0px !important;

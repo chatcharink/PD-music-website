@@ -9,7 +9,7 @@ module ContentHelper
             arr_select << option
             arr_text << name
         end
-        arr_select.uniq! if arr_select.length > 0
+        arr_select.uniq!.compact! if arr_select.length > 0
         arr_select
     end
 end

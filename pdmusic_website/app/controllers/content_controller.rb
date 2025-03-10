@@ -4,7 +4,7 @@ class ContentController < ApplicationController
             banner = Banner.create_banner(params)
 
             @banner = Banner.where(menu_tag: params["menu"]).where.not(status: ["deleted", "pre_delete"])
-            @banner = @banner.where(cover_id: params["cover_id"]) if params["cover_id"].present? 
+            @banner = params["cover_id"].present? ? @banner.where(cover_id: params["cover_id"]) : @banner.where(cover_id: nil)
             render(
                 partial: "content/upload_image",
                 formats: [:html, :js, :json, :url_encoded_form]

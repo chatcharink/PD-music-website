@@ -24,8 +24,9 @@
             <% next if k.blank? %>
             <% is_active = index == 0 ? "active" : "" %>
             <% tab_name = k == "no_tab_name" ? "Others" : k.capitalize %>
+            <% key = k.split(" ").join("-") %>
             <li class="nav-item" role="presentation">
-                <button class="nav-link <%= is_active %>" id="sub-<%= k %>-tab" data-bs-toggle="tab" data-bs-target="#sub-<%= k %>-tab-pane" type="button" role="tab" aria-controls="sub-<%= k %>-tab-pane" aria-selected="true"><%= tab_name %></button>
+                <button class="nav-link <%= is_active %>" id="sub-<%= key %>-tab" data-bs-toggle="tab" data-bs-target="#sub-<%= key %>-tab-pane" type="button" role="tab" aria-controls="sub-<%= key %>-tab-pane" aria-selected="true"><%= tab_name %></button>
             </li>
             <% index += 1 %>
         <% end %>
@@ -33,7 +34,8 @@
     <div class="tab-content mb-3">
         <% @sub_content.each_with_index do |(k, v), index| %>
             <% is_active = index == 0 ? "active" : "" %>
-            <div class="tab-pane fade show <%= is_active %>" id="sub-<%= k %>-tab-pane" role="tabpanel" aria-labelledby="sub-<%= k %>-tab" tabindex="0">
+            <% key = k.split(" ").join("-") %>
+            <div class="tab-pane fade show <%= is_active %>" id="sub-<%= key %>-tab-pane" role="tabpanel" aria-labelledby="sub-<%= key %>-tab" tabindex="0">
                 <div class="d-flex row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
                     <% v.each do |val| %>
                         <div class="col-auto position-relative">

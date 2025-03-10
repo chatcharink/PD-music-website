@@ -38,8 +38,8 @@
                                 <div class="mb-3"><%= c.content %></div>
                                 <% if c.table.present? %>
                                     <% json_table = JSON.parse(c.table.to_json) %>
-                                    <h5 class="mb-3"><b><%= json_table["title"] %></b></h5>
                                     <% if json_table["row1"].present? %>
+                                        <h5 class="mb-3"><b><%= json_table["title"] %></b></h5>
                                         <span><i>Table content</i><span>
                                     <% end %>
                                 <% end %>

@@ -105,6 +105,8 @@ export default class extends Controller {
         document.getElementById("content").value = "";
         document.getElementById("update-id").value = "";
         document.getElementById("submit-content-btn").value = "Add"
+        document.getElementById("table-title").value = "";
+        document.getElementById("table-header-1").value = "";
         let headers = document.getElementsByClassName("content-header");
         if (headers.length > 1){
             for (let i = headers.length; i > 1; i--){

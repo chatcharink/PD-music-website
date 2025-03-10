@@ -7,20 +7,20 @@
         when "gallery", "school" then "4"
         when "feedback" then "1"
         end %>
-<div class="d-flex row row-cols-1 row-cols-md-<%= row_md %> row-cols-lg-<%= row_lg %> g-4 mb-3">
+<div class="d-flex row row-cols-md-<%= row_md %> row-cols-lg-<%= row_lg %> g-4 mb-3">
     <% additional = additional_content == "gallery" ? AdditionalContent.where(menu: "gallery", gallery_id: data.additional_content_id) : AdditionalContent.where(menu: additional_content) %>
     <% additional.each do |add| %>
-        <div class="col-auto">
+        <div class="col-auto align-content-center">
             <% if add.image.attached? %>
                 <% if add.url.blank? %>
                     <div class="grid-picture text-center">
-                        <img id="image-content-<%= add.id %>" src="<%= url_for(add.image) %>" alt="" class="mb-3" width="153px" height="153px" style="object-fit: contain"/>
-                        <h5 class="text-center"><%= add.title %></h5>
+                        <img id="image-content-<%= add.id %>" src="<%= url_for(add.image) %>" alt="" class="mb-3 additional-image-<%= add.menu %>" style="object-fit: contain"/>
+                        <h5 class="text-center additional-title-<%= add.menu %>"><%= add.title %></h5>
                     </div>
                 <% else %>
                     <%= link_to add.url, class: "nav-link text-center grid-picture", target: "_blank" do %>
-                        <img id="image-content-<%= add.id %>" src="<%= url_for(add.image) %>" alt="" class="mb-3" width="153px" height="153px" style="object-fit: contain"/>
-                        <h5 class="text-center"><%= add.title %></h5>
+                        <img id="image-content-<%= add.id %>" src="<%= url_for(add.image) %>" alt="" class="mb-3 additional-image-<%= add.menu %>" style="object-fit: contain"/>
+                        <h5 class="text-center additional-title-<%= add.menu %>"><%= add.title %></h5>
                     <% end %>
                 <% end %>
             <% end %>
