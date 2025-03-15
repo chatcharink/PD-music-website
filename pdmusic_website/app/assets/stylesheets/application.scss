@@ -429,6 +429,9 @@ table{
     width: 100%;
     max-height: 153px;
 }
+.div-contact-us{
+    height: calc(100% + 100px);
+}
 
 @media only screen and (max-width: 1024px) {
     .div-body{
@@ -458,6 +461,10 @@ table{
     #pubilc-content-icon{
         display: inline;
     }
+
+    .div-contact-us{
+        height: auto;
+    }
 }
 
 @media only screen and (max-width: 567px) {
@@ -471,5 +478,9 @@ table{
 
     #pubilc-content-icon{
         display: none;
+    }
+
+    .div-contact-us{
+        height: auto;
     }
 } 

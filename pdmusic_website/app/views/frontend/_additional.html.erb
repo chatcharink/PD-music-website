@@ -8,7 +8,7 @@
         when "feedback" then "1"
         end %>
 <div class="d-flex row row-cols-md-<%= row_md %> row-cols-lg-<%= row_lg %> g-4 mb-3">
-    <% additional = additional_content == "gallery" ? AdditionalContent.where(menu: "gallery", gallery_id: data.additional_content_id) : AdditionalContent.where(menu: additional_content) %>
+    <% additional = additional_content == "gallery" ? AdditionalContent.where(menu: "gallery", gallery_id: data.additional_content_id, status: "active") : AdditionalContent.where(menu: additional_content, status: "active") %>
     <% additional.each do |add| %>
         <div class="col-auto align-content-center">
             <% if add.image.attached? %>
