@@ -63,6 +63,7 @@ export default class extends Controller {
         const file_gallery = event.target.files[0];
         const reader_gallery = new FileReader();
         let num = parseInt(event.params["number"]);
+        let number_of_upload_pic = document.getElementById("count-limit-upload-pic");
 
         if (typeof file_gallery == "undefined"){
             document.getElementById("add-pictue-to-gallery-"+num).disabled = true;
@@ -84,10 +85,16 @@ export default class extends Controller {
 
             this.setImageAttribute("preview-image-"+num, reader_gallery.result);
             this.createDeletePicture(clone_div, num);
-            this.createFileInput(num);
-
-            document.getElementsByClassName("upload-picture-gallery")[0].setAttribute("for", "add-pictue-to-gallery-"+(num+1));
-            document.getElementById("add-pictue-to-gallery-"+num).disabled = false;
+            
+            let count = parseInt(number_of_upload_pic.innerHTML)+1;
+            number_of_upload_pic.innerHTML = count;
+            if (count < 20){
+                this.createFileInput(num);
+                document.getElementsByClassName("upload-picture-gallery")[0].setAttribute("for", "add-pictue-to-gallery-"+(num+1));
+                document.getElementById("add-pictue-to-gallery-"+num).disabled = false;
+            }else{
+                document.getElementById("div-add-picture-to-gallery").style.display = "none";
+            }
         }
 
         if (file_gallery) {
@@ -116,10 +123,16 @@ export default class extends Controller {
 
     deletePicture(event){
         let number = event.params["number"];
+        let number_of_upload_pic = document.getElementById("count-limit-upload-pic");
         document.getElementById("div-preview-image-"+number).remove();
 
-        let id = event.params["id"].toString();
-        if (id !== "" || id != null){
+        let id = event.params["id"];
+
+        if (typeof id === "undefined"){
+            number_of_upload_pic.innerHTML = number_of_upload_pic.innerHTML-1;
+            document.getElementById("div-add-picture-to-gallery").style.display = "block";
+        }else{
+            id = id.toString();
             let gallery = document.getElementById("arr-gallery-id").value;
             let arr_gallery = gallery.split(",");
             let index = arr_gallery.indexOf(id);
