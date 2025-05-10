@@ -1,0 +1,36 @@
+<% if data.table.present? %>
+    <% json_table = JSON.parse(data.table.to_json) %>
+    <% if json_table["row1"].present? %>
+        <h5 class="mx-3 mb-3"><b><%= json_table["title"] %></b></h5>
+        <div class="row mb-3 justify-center">
+            <div class="col-12 table-responsive w-100">
+                <% headers = json_table["header"].values %>
+                <table class="table table-hover w-100">
+                    <thead>
+                        <tr>
+                            <% headers.each do |h| %>
+                                <th class="px-3"><%= h %></th>
+                            <% end %>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% index = 0 %>
+                        <% while index >= 0 %>
+                            <% if json_table["row#{index+1}"].blank? %>
+                                <% index = -1 %>
+                                <% break %>
+                            <% end %>
+                            <% row = json_table["row#{index+1}"].values %>
+                            <tr class="tr-row">
+                                <% row.each_with_index do |r, i| %>
+                                    <td class="px-3"><%= r %></td>
+                                <% end %>
+                            </tr>
+                            <% index += 1 %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <% end %>
+<% end %>

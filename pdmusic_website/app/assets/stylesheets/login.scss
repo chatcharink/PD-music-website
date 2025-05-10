@@ -1,0 +1,103 @@
+.background-div{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(./pictures/music-bg.jpg);
+}
+
+@media only screen and (max-width: 1024px) {
+    #div-login, #div-register{
+        width: 90%;
+    }
+}
+
+#div-login, #div-register{
+    background: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    width: 35%;
+}
+
+#div-register{
+    min-height: 650px;
+}
+
+#logo-login{
+    // background: white !important;
+    // padding: 20px 10px;
+    // margin-top: -40px;
+}
+
+#welcome-text, #forgot-password-text{
+    // color: #6c6de8;
+    font-size: 36px;
+    font-weight: bold;
+    color: rgb(33,37,41) !important;
+    // background: linear-gradient(to right, #6c6de8, #44dbdc);
+    // -webkit-text-fill-color: transparent;
+    // -webkit-background-clip: text;
+}
+
+#register-link{
+    color: #a7a7a7;
+    text-decoration: none;
+}
+
+#forgot-password-btn{
+    color: #a7a7a7 !important;
+    background-color: transparent !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+#register-link:hover, #forgot-password-btn:hover{
+    color: rgb(33,37,41) !important;
+}
+
+// Signup
+.view-password{
+    transform: translateX(-30px);
+    cursor: pointer;
+}
+
+.view-password:hover{
+    color: #6c6de8;
+}
+
+.password-rule{
+    color: #ff220f;
+}
+
+.bi-x-circle-fill, .bi-check-lg{
+    margin-top: -2px;
+}
+
+//Forgot password
+.forgot-icon{
+    // background: linear-gradient(to right, #6c6de8, #44dbdc);
+    // -webkit-text-fill-color: transparent;
+    // -webkit-background-clip: text;
+    color: #3b3c66;
+}
+
+#btn-send-forgot:disabled{
+    background-color: #d1d1d1 !important;
+    border: 1px solid #d1d1d1;
+}

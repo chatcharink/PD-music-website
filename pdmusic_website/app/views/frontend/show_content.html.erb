@@ -1,0 +1,15 @@
+<div class="w-100 mb-5">
+    <%= render partial: "frontend/banner" %>
+</div>
+
+<div class="div-content m-auto mb-3">
+    <% if @content_data.blank? %>
+        <%= render partial: "frontend/content1" %>
+    <% else %>
+        <% if @content_data.first.content_format.to_i == 2 %>
+            <%= render partial: "frontend/content2" %>
+        <% else %>
+            <%= render partial: "frontend/content1" %>
+        <% end %>
+    <% end %>
+</div>

@@ -1,0 +1,2 @@
+module NavigatorBarHelper
+end

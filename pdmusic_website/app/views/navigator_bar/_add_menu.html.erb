@@ -1,0 +1,54 @@
+<!-- Modal -->
+<div class="modal fade" id="addMenu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addMenuLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <%= form_for "form_menu" , url: navigator_path(format: :json), method: :POST, html: { id: "form_menu", class: "w-100" } do |f| %>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addMenuLabel">Add Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        
+            <div class="modal-body">
+                <div class="div-menu-content">
+                    <div class="mb-3">
+                        <label for="menu_name" class="form-label">Menu name:</label>
+                        <%= f.text_field :menu_name, value: @data.menu_name, class: "form-control", id: "menu_name", max: 150 %>
+                    </div>
+                    <div class="mb-1">
+                        <label for="menu_tag" class="form-label">Tag:</label>
+                        <%= f.text_field :menu_tag, value: @data.menu_tag, class: "form-control", id: "menu_tag", readonly: @data.menu_tag.present? %>
+                    </div>
+                    <div class="mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                        <span class="form-label"><i>Please enter tag with english alphabets only</i></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="menu_icon" class="form-label">Icon:</label>
+                        <%= f.text_field :menu_icon, value: @data.icon, class: "form-control", id: "menu_icon" %>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch form-check-inline">
+                            <%= f.check_box :header, class: "form-check-input", id: "headerCheck", value: @data.header.to_i, checked: @data.header.to_i > 0 %>
+                            <label class="form-check-label" for="headerCheck">Header</label>
+                        </div>
+                        <div class="form-check form-switch form-check-inline">
+                            <%= f.check_box :footer, class: "form-check-input", id: "footerCheck", value: @data.footer.to_i, checked: @data.footer.to_i > 0 %>
+                            <label class="form-check-label" for="footerCheck">Footer</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <%= f.hidden_field :update_id, value: @data.id, id: "update-id" %>
+            </div>
+        
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit-content-btn" data-action="click->menu#checkTag">Add</button>
+                <%= f.submit "Add", class: "btn btn-primary d-none", id: "submit-content-btn2" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

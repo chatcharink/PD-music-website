@@ -1,0 +1,17 @@
+<div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <% @banner.each_with_index do |b, index| %>
+            <% is_active = index == 0 ? "class=active aria-current=true" : "" %>
+            <button type="button" data-bs-target="#carouselBanner" data-bs-slide-to="<%= index %>" <%= is_active %> aria-label="Slide <%= index+1 %>"></button>
+        <% end %>
+    </div>
+    <div class="carousel-inner">
+        <% @banner.each_with_index do |b, index| %>
+            <% is_active = index == 0 ? "active" : "" %>
+            <% source = b.banner_image.attached? ? url_for(b.banner_image) : "" %>
+            <div class="carousel-item <%= is_active %>" data-bs-interval="5000">
+                <img id="image-banner-<%= index+1 %>" class="d-block w-100" src="<%= source %>" alt=""/>
+            </div>
+        <% end %>
+    </div>
+</div>
